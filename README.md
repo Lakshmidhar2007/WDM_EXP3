@@ -1,5 +1,5 @@
 ### EX3 Implementation of GSP Algorithm In Python
-### DATE: 
+### DATE: 21/08/2026
 ### AIM: To implement GSP Algorithm In Python.
 ### Description:
 The Generalized Sequential Pattern (GSP) algorithm is a data mining technique used for discovering frequent patterns within a sequence database. It operates by identifying sequences that frequently occur together. GSP works by employing a depth-first search strategy to explore and extract frequent patterns efficiently.
@@ -36,6 +36,7 @@ for each wear category.</p>
 <p align="justify">
 8. Visulaize the sequence patterns using matplotlib.
 </p>
+
 ### Program:
 
 ```python
@@ -43,16 +44,36 @@ from collections import defaultdict
 from itertools import combinations
 # Function to generate candidate k-item sequences
 def generate_candidates(dataset, k):
+    candidates = defaultdict(int)
 
+    for sequence in dataset:
+        for candidate in combinations(sequence, k):
+            candidates[candidate] += 1
 
-    /WRITE YOUR CODE HERE/
+    return candidates
 
 
 #Function to perform GSP algorithm
 def gsp(dataset, min_support):
+    frequent_patterns = {}
+    k = 1
 
+    while True:
+        candidates = generate_candidates(dataset, k)
 
-  /WRITE YOUR CODE HERE/
+        frequent = {
+            pattern: support
+            for pattern, support in candidates.items()
+            if support >= min_support
+        }
+
+        if not frequent:
+            break
+
+        frequent_patterns.update(frequent)
+        k += 1
+
+    return frequent_patterns
 
 
 #Example dataset for each category
@@ -103,6 +124,9 @@ else:
 ```
 ### Output:
 
+<img width="638" height="318" alt="image" src="https://github.com/user-attachments/assets/af26e3b1-c8e8-4d1f-8bcb-9b382e7e9ef2" />
+
+
 ### Visualization:
 ```python
 import matplotlib.pyplot as plt
@@ -130,6 +154,12 @@ visualize_patterns_line(bottom_wear_result, 'Bottom Wear')
 visualize_patterns_line(party_wear_result, 'Party Wear')
 ```
 ### Output:
+<img width="1034" height="486" alt="image" src="https://github.com/user-attachments/assets/1ee859f5-3cb5-41c4-81e9-58cd03dc89a3" />
+
+
+
+<img width="1016" height="494" alt="image" src="https://github.com/user-attachments/assets/8865c716-7e64-4dd0-8801-851cf815cf1f" />
+
 
 
 ### Result:
