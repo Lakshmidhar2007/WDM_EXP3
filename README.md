@@ -163,3 +163,5 @@ visualize_patterns_line(party_wear_result, 'Party Wear')
 
 
 ### Result:
+
+The Generalized Sequential Pattern (GSP) algorithm was successfully implemented in Python using Google Colab. The algorithm identified frequent sequential patterns from the Top Wear, Bottom Wear, and Party Wear datasets based on the minimum support value of 2. The frequent patterns and their support counts were displayed and visualized using line graphs.
